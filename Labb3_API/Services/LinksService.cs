@@ -13,10 +13,10 @@ public class LinksService : ILinksService
     {
         _context = context;
     }
-    public async Task<IEnumerable<LinkDTO>> GetAllLinksAsync()
+    public async Task<IEnumerable<ShowLinksDTO>> GetAllLinksAsync()
     {
         return await _context.Links
-            .Select(link => new LinkDTO
+            .Select(link => new ShowLinksDTO
             {
                 Id = link.Id,
                 Url = link.Url,
@@ -24,24 +24,13 @@ public class LinksService : ILinksService
             })
             .ToListAsync();
     }
-
-    public async Task<LinkDTO?> GetLinkByIdAsync(int id)
-    {
-        return await _context.Links
-            .Where(link => link.Id == id)
-            .Select(link => new LinkDTO
-            {
-                Id = link.Id,
-                Url = link.Url,
-                InterestId = link.InterestId
-            })
-            .FirstOrDefaultAsync();
-    }
+    
 
     public async Task<LinkDTO> CreateLinkAsync(CreateLinkDTO dto)
     {
         var link = new Link
         {
+            PersonId = dto.PersonId,
             Url = dto.Url,
             InterestId = dto.InterestId
         };
@@ -53,6 +42,7 @@ public class LinksService : ILinksService
         {
             Id = link.Id,
             Url = link.Url,
+            PersonId = link.PersonId,
             InterestId = link.InterestId
         };
     }

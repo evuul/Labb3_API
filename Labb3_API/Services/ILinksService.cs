@@ -4,7 +4,7 @@ namespace Labb3_API.Services;
 
 public interface ILinksService
 {
-    Task<IEnumerable<LinkDTO>> GetAllLinksAsync();
+    Task<IEnumerable<ShowLinksDTO>> GetAllLinksAsync();
     Task<LinkDTO> CreateLinkAsync(CreateLinkDTO dto);
     Task<bool> DeleteLinkAsync(int id);
 }

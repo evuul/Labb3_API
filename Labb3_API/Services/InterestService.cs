@@ -14,10 +14,10 @@ public class InterestService : IInterestService
         _context = context;
     }
 
-    public async Task<IEnumerable<InterestDTO>> GetAllInterestsAsync()
+    public async Task<IEnumerable<ShowInterestDTO>> GetAllInterestsAsync()
     {
         var interests = await _context.Interests
-            .Select(i => new InterestDTO
+            .Select(i => new ShowInterestDTO
             {
                 Id = i.Id,
                 Title = i.Title,
@@ -28,7 +28,7 @@ public class InterestService : IInterestService
         return interests;
     }
     
-    public async Task<InterestDTO> CreateInterestAsync(CreateInterestDTO dto)
+    public async Task<CreatedInterestDTO> CreateInterestAsync(CreateInterestDTO dto)
     {
         var interest = new Interest
         {
@@ -39,12 +39,11 @@ public class InterestService : IInterestService
         _context.Interests.Add(interest);
         await _context.SaveChangesAsync();
 
-        return new InterestDTO
+        return new CreatedInterestDTO()
         {
             Id = interest.Id,
             Title = interest.Title,
             Description = interest.Description,
-            Links = new List<string>()
         };
     }
 }

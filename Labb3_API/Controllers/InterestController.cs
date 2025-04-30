@@ -15,7 +15,7 @@ public class InterestController : ControllerBase
         _interestService = interestService;
     }
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<InterestDTO>>> GetAllInterests()
+    public async Task<ActionResult<IEnumerable<ShowInterestDTO>>> GetAllInterests()
     {
         var interests = await _interestService.GetAllInterestsAsync();
         return Ok(interests);

@@ -42,10 +42,12 @@ public class PersonService : IPersonService
             .Where(p => p.Id == id)
             .Select(p => new PersonDTO
             {
+                Id = p.Id,
                 Name = p.FirstName + " " + p.LastName,
                 Mobilnummer = p.PhoneNumber,
                 Interests = p.Interests.Select(i => new InterestDTO
                 {
+                    Id = i.Id,
                     Title = i.Title,
                     Description = i.Description,
                     Links = _context.Links
@@ -73,16 +75,14 @@ public class PersonService : IPersonService
             }).ToListAsync();
     }
 
-    public async Task<IEnumerable<LinkDTO>> GetLinksForPersonAsync(int personId)
+    public async Task<IEnumerable<GetLinksForPersonDTO>> GetLinksForPersonAsync(int personId)
     {
         return await _context.Links
             .Where(l => l.PersonId == personId)
-            .Select(l => new LinkDTO
+            .Select(l => new GetLinksForPersonDTO
             {
                 Id = l.Id,
                 Url = l.Url,
-                PersonId = l.PersonId,
-                InterestId = l.InterestId
             }).ToListAsync();
     }
 

@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IInterestService, InterestService>();
+builder.Services.AddScoped<ILinksService, LinksService>();
 
 // Registrera DbContext och konfigurera SQL Server-anslutningen
 builder.Services.AddDbContext<APIDbContext>(options =>
