@@ -1,4 +1,5 @@
 using Labb3_API.Data;
+using Labb3_API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IPersonService, PersonService>();
 
 // Registrera DbContext och konfigurera SQL Server-anslutningen
 builder.Services.AddDbContext<APIDbContext>(options =>

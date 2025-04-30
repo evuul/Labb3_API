@@ -5,6 +5,7 @@ namespace Labb3_API.Models.DTO;
 
 public class PersonDTO
 {
+    public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string? Mobilnummer { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
