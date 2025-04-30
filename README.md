@@ -1,4 +1,3 @@
----
 
 ## 🔹 GET: `GetAllPersons`
 **Beskrivning:** Hämtar alla personer i systemet.
